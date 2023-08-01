@@ -1,0 +1,9 @@
+.header-left {
+  display: flex;
+  align-items: center;
+}
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
