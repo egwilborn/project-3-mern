@@ -12,20 +12,17 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import userService from "../../utils/userService";
-import "./SignupForm.css";
 
-export default function SignupForm({ handleSignupOrLogin }) {
+export default function LoginForm({ handleSignupOrLogin }) {
   const navigate = useNavigate();
   //SET STATE HERE
   //state is the state of the form entries
   const [state, setState] = useState({
-    username: "",
     email: "",
     password: "",
-    passwordConf: "",
   });
   //selected file is the state that contains the profile photos
-  const [selectedFile, setSelectedFile] = useState();
+
   const [error, setError] = useState("");
 
   //DEFINE FUNCTIONS HERE
@@ -36,25 +33,17 @@ export default function SignupForm({ handleSignupOrLogin }) {
       [e.target.name]: e.target.value,
     });
   }
-  //handles rendering of chosen file
-  function handleSelectedFile(e) {
-    setSelectedFile(e.target.files[0]);
-  }
+
   //handles form submission
   async function handleSubmit(e) {
     e.preventDefault(); // prevents the page from refreshing
-    const formData = new FormData();
-    formData.append("photo", selectedFile);
-    formData.append("username", state.username);
-    formData.append("email", state.email);
-    formData.append("password", state.password);
     try {
-      const signup = await userService.signup(formData);
+      const data = await userService.login(state);
       navigate("/");
       handleSignupOrLogin();
     } catch (err) {
-      console.log(err, "<-- error with signup - see signup form");
-      setError("Unable to sign up. Please try again.");
+      console.log(err, "<-- error in Login");
+      setError("Error with Login, check console");
     }
   }
   //RETURN UI HERE
@@ -63,18 +52,10 @@ export default function SignupForm({ handleSignupOrLogin }) {
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "rgb(94 149 162)" }} textAlign="center">
           <Image src="https://imgur.com/RNaIGvo.png" className="signup-logo" />
-          Sign Up to Use Travelog
+          Login to Travelog
         </Header>
         <Form size="large" autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked style={{ backgroundColor: "rgb(192 204 210)" }}>
-            <Form.Input
-              fluid
-              placeholder="Username"
-              name="username"
-              value={state.username}
-              onChange={handleChange}
-              required
-            />
             <Form.Input
               fluid
               placeholder="E-mail address"
@@ -92,27 +73,6 @@ export default function SignupForm({ handleSignupOrLogin }) {
               onChange={handleChange}
               required
             />
-            {state.password !== state.passwordConf ? (
-              <p style={{ color: "red", fontSize: "15px" }}>
-                passwords do not match
-              </p>
-            ) : null}
-            <Form.Input
-              fluid
-              placeholder="Confirm Password"
-              type="password"
-              name="passwordConf"
-              value={state.passwordConf}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              fluid
-              placeholder="Upload Photo"
-              type="file"
-              name="photo"
-              onChange={handleSelectedFile}
-            />
 
             <Button
               style={{ backgroundColor: "rgb(19 52 119)", color: "white" }}
@@ -120,14 +80,14 @@ export default function SignupForm({ handleSignupOrLogin }) {
               size="large"
               type="submit"
             >
-              Sign Up
+              Login
             </Button>
           </Segment>
         </Form>
         <Message style={{ backgroundColor: "rgb(94 149 162)", color: "white" }}>
-          Already have an account?{" "}
-          <Link to="/login" style={{ color: "rgb(192 204 210)" }}>
-            Login
+          Don't have an account?{" "}
+          <Link to="/signup" style={{ color: "rgb(192 204 210)" }}>
+            Sign Up
           </Link>
         </Message>
       </Grid.Column>

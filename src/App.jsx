@@ -1,15 +1,46 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useState } from "react";
 import "./App.css";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import HomePage from "./pages/HomePage/HomePage";
+import userService from "./utils/userService";
 
 function App() {
+  //SET STATE HERE
+  const [user, setUser] = useState(userService.getUser());
+  //DEFINE FUNCTIONS HERE
+  function handleSignupOrLogin() {
+    setUser(userService.getUser());
+  }
+  //RETURN UI HERE
+  if (!user) {
+    return (
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />}
+        />
+        <Route path="/*" element={<Navigate to="/login" />} />
+      </Routes>
+    );
+  }
   return (
     <Routes>
-      <Route path="/" element={<h1>Home Pageeeeeeeeeee</h1>} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/login"
+        element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />}
+      />
+      <Route
+        path="/signup"
+        element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />}
+      />
     </Routes>
   );
 }

@@ -1,12 +1,13 @@
-import React from 'react';
-import './LoginPage.css';
+import React from "react";
+import "./LoginPage.css";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import PageHeader from "../../components/Header/Header";
 
-
-export default function LoginPage(props){
-   
-
-    return (
-      <div>Login Pageeeeee</div>
-      );
+export default function LoginPage({ handleSignupOrLogin }) {
+  return (
+    <div>
+      <PageHeader />
+      <LoginForm handleSignupOrLogin={handleSignupOrLogin} />
+    </div>
+  );
 }
-

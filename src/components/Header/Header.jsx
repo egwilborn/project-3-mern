@@ -14,7 +14,7 @@ export default function PageHeader() {
     >
       <Image src="https://i.imgur.com/oftKTG7.png" alt="airplane icon"></Image>
       <Link style={{ padding: "7px", color: "white", fontSize: "30px" }} to="">
-        TravelShare
+        Travelog
       </Link>
       <Icon name="home"></Icon>
     </Header>

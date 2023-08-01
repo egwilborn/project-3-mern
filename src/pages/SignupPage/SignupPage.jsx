@@ -3,11 +3,16 @@ import "./SignupPage.css";
 import PageHeader from "../../components/Header/Header";
 import SignupForm from "../../components/SignupForm/SignupForm";
 
-export default function SignupPage() {
+export default function SignupPage({ handleSignupOrLogin }) {
+  //set state here
+
+  //define functions here
+
+  //return ui here
   return (
     <>
       <PageHeader />
-      <SignupForm />
+      <SignupForm handleSignupOrLogin={handleSignupOrLogin} />
     </>
   );
 }
