@@ -10,7 +10,7 @@ const citySchema = new Schema(
     description: String,
     photoUrl: String,
     sites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Site" }],
-    usersFollowing: [{ type: mongoose.Schema.Types.ObjectId, ref: "Site" }],
+    usersFollowing: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

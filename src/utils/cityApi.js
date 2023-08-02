@@ -23,9 +23,9 @@ export function getAllCities() {
   return fetch(BASE_URL, {
     method: "GET",
     headers: {
-      // convention for sending formdata when logged in
+      // for sending http requests when logged in - supplies req.user
 
-      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and and it to our api request
+      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and add it to our api request
       // so the server knows who the request is coming from when the client is trying to make a POST
     },
   }).then((res) => {
@@ -36,7 +36,36 @@ export function getAllCities() {
   });
 }
 
+//when the check box is clicked (to check), the http request needs to be made to add the user to the usersFollowing
+//array in the cities model
 export function followCity(cityId) {
-  return fetch();
+  return fetch(`${BASE_URL}/${cityId}/follow`, {
+    method: "POST",
+    headers: {
+      // for sending http requests when logged in - supplies req.user
+
+      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and and it to our api request
+      // so the server knows who the request is coming from when the client is trying to make a POST
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("something went wrong with followCity request in city api");
+  });
 }
-export function unfollowCity(cityId) {}
+
+//when the check box is clicked (to uncheck), the http request needs to be made to delete the user from the usersFollowing
+//array in the cities model
+export function unfollowCity(cityId) {
+  return fetch(`${BASE_URL}/${cityId}/unfollow`, {
+    method: "DELETE",
+    headers: {
+      // for sending http requests when logged in - supplies req.user
+
+      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and and it to our api request
+      // so the server knows who the request is coming from when the client is trying to make a POST
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("something went wrong with followCity request in city api");
+  });
+}

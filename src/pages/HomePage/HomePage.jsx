@@ -11,14 +11,32 @@ import { Grid, Image, Segment, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function HomePage() {
+export default function HomePage({ user }) {
   //SET STATE HERE
-  const [cities, setCities] = useState();
+  const [cities, setCities] = useState([]);
+  const [userCities, setUserCities] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 
   //DEFINE FUNCTIONS HERE
-
+  async function addFollower(cityId) {
+    try {
+      const response = await cityApi.followCity(cityId);
+      console.log(response, "<-- response from server after adding follower");
+    } catch (err) {
+      console.log(err, "<-- error in addFollowers in homePage");
+      setError("error adding follower - check console");
+    }
+  }
+  async function removeFollower(cityId) {
+    try {
+      const response = await cityApi.unfollowCity(cityId);
+      console.log(response, "<-- response from server after adding follower");
+    } catch (err) {
+      console.log(err, "<-- error in addFollowers in homePage");
+      setError("error adding follower - check console");
+    }
+  }
   async function getCities() {
     try {
       //make api call to get all the cities from db
@@ -51,7 +69,7 @@ export default function HomePage() {
             <PageHeader />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered="true" className="home-page">
+        <Grid.Row centered={true} className="home-page">
           <Grid.Column
             width={12}
             style={{
@@ -63,7 +81,12 @@ export default function HomePage() {
           >
             <SearchCitiesForm />
             <div className="city-gallery">
-              <CityGallery cities={cities} />
+              <CityGallery
+                cities={cities}
+                addFollower={addFollower}
+                removeFollower={removeFollower}
+                user={user}
+              />
             </div>
           </Grid.Column>
           <Grid.Column

@@ -8,6 +8,8 @@ const upload = multer();
 /*---------- Public Routes ----------*/
 router.post("/", upload.single("photo"), citiesCtrl.create);
 router.get("/", citiesCtrl.index);
+router.post("/:id/follow", citiesCtrl.follow);
+router.delete("/:id/unfollow", citiesCtrl.unfollow);
 /*---------- Protected Routes ----------*/
 
 module.exports = router;

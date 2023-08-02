@@ -15,7 +15,7 @@ export default function FormPage() {
             <PageHeader />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered="true">
+        <Grid.Row centered={true}>
           <Grid.Column
             width={12}
             style={{

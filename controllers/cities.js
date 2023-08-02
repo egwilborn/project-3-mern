@@ -10,6 +10,8 @@ const BUCKET_NAME = process.env.BUCKET_NAME;
 module.exports = {
   create,
   index,
+  follow,
+  unfollow,
 };
 
 //for creating a new city post
@@ -49,10 +51,34 @@ async function create(req, res) {
 
 async function index(req, res) {
   try {
+    //finds all cities in the model and stores in the the variable "cities"
     const cities = await City.find({});
-    res.status(201).json({ cities });
+    res.status(201).json({ cities }); //send "cities" back to be rendered for client
   } catch (err) {
     console.log(err, "<--- error with indexing cities in cities controller");
+    res.status(400).json(err);
+  }
+}
+
+async function follow(req, res) {
+  try {
+    const followedCity = await City.findById(req.params.id);
+    followedCity.usersFollowing.push(req.user._id);
+    await followedCity.save();
+    res.status(201).json({ data: "user is following city" });
+  } catch (err) {
+    console.log(err, "<--- error with following city in cities controller");
+    res.status(400).json(err);
+  }
+}
+async function unfollow(req, res) {
+  try {
+    const followedCity = await City.findById(req.params.id);
+    followedCity.usersFollowing.remove(req.user._id);
+    await followedCity.save();
+    res.status(201).json({ data: "user is no longer following city" });
+  } catch (err) {
+    console.log(err, "<--- error with following city in cities controller");
     res.status(400).json(err);
   }
 }
