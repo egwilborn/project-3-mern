@@ -1,42 +1,22 @@
 import PageHeader from "../../components/Header/Header";
-import SearchCitiesForm from "../../components/SearchCitiesForm/SearchCitiesForm";
-import CityGallery from "../../components/CityGallery/CityGallery";
+import AddCityForm from "../../components/AddCityForm/AddCityForm";
 import UserCityGallery from "../../components/UserCityGallery/UserCityGallery";
 import Footer from "../../components/Footer/Footer";
 
-import "./HomePage.css";
-
-import { Grid, Image, Segment } from "semantic-ui-react";
+import { Grid, Image, Segment, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
-export default function HomePage() {
-  //SET STATE HERE
-  const [cities, setCities] = useState();
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(true);
-  //DEFINE FUNCTIONS HERE
-  useEffect(() => {
-    async function getCities() {
-      try {
-      } catch (err) {
-        console.log(err, "<-- err getting cities in homepage");
-        setError("Error retrieving cities");
-      }
-    }
-  });
-
-  //RETURN UI HERE
+export default function FormPage() {
   return (
-    <div>
-      <Grid style={{ height: "100vmin" }}>
+    <div style={{ position: "relative", height: "100vmin" }}>
+      <Grid>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
             <PageHeader />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row
-          centered="true"
+          centered
           style={{
             height: "80vmin",
           }}
@@ -47,12 +27,13 @@ export default function HomePage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <SearchCitiesForm />
-            <CityGallery />
+            <div style={{}}>
+              <AddCityForm />
+            </div>
           </Grid.Column>
           <Grid.Column
             width={4}
@@ -62,7 +43,12 @@ export default function HomePage() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Footer />
+      <Container
+        fluid
+        style={{ position: "absolute", bottom: "0", height: "10vmin" }}
+      >
+        <Footer />
+      </Container>
     </div>
   );
 }
