@@ -1,3 +1,13 @@
+import CityCard from "../CityCard/CityCard";
+
 export default function CityGallery() {
-  return <p>This is the city gallery</p>;
+  return (
+    <div>
+      <CityCard />
+      <CityCard />
+      <CityCard />
+      <CityCard />
+      <CityCard />
+    </div>
+  );
 }
