@@ -18,3 +18,25 @@ export function addCity(data) {
     throw new Error("something went wrong with add city");
   });
 }
+
+export function getAllCities() {
+  return fetch(BASE_URL, {
+    method: "GET",
+    headers: {
+      // convention for sending formdata when logged in
+
+      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and and it to our api request
+      // so the server knows who the request is coming from when the client is trying to make a POST
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error(
+      "something went wrong with getAllCities request in city api"
+    );
+  });
+}
+
+export function followCity(cityId) {
+  return fetch();
+}
+export function unfollowCity(cityId) {}

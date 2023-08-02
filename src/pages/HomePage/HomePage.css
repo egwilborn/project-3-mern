@@ -1,12 +1,9 @@
-.grid {
-  background-color: rgb(19 52 119);
-}
-body {
-  background-color: rgb(19 52 119);
-}
 .home-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.city-gallery {
+  margin: 50px 30px 30px 30px;
 }

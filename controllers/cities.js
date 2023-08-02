@@ -9,6 +9,7 @@ const s3 = new S3();
 const BUCKET_NAME = process.env.BUCKET_NAME;
 module.exports = {
   create,
+  index,
 };
 
 //for creating a new city post
@@ -44,4 +45,14 @@ async function create(req, res) {
       res.status(400).json(err);
     }
   });
+}
+
+async function index(req, res) {
+  try {
+    const cities = await City.find({});
+    res.status(201).json({ cities });
+  } catch (err) {
+    console.log(err, "<--- error with indexing cities in cities controller");
+    res.status(400).json(err);
+  }
 }

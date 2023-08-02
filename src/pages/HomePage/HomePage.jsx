@@ -5,8 +5,9 @@ import UserCityGallery from "../../components/UserCityGallery/UserCityGallery";
 import Footer from "../../components/Footer/Footer";
 
 import "./HomePage.css";
+import * as cityApi from "../../utils/cityApi";
 
-import { Grid, Image, Segment } from "semantic-ui-react";
+import { Grid, Image, Segment, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -15,33 +16,42 @@ export default function HomePage() {
   const [cities, setCities] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
+
   //DEFINE FUNCTIONS HERE
-  useEffect(() => {
-    async function getCities() {
-      try {
-      } catch (err) {
-        console.log(err, "<-- err getting cities in homepage");
-        setError("Error retrieving cities");
-      }
+
+  async function getCities() {
+    try {
+      //make api call to get all the cities from db
+      const response = await cityApi.getAllCities();
+      //console.log(response.cities) //<-- test to see what form your data is coming back in
+      setCities(response.cities); // set state with your data so it can be rendered in ui
+      setLoading(false);
+    } catch (err) {
+      console.log(err, "<-- err getting cities in homepage");
+      setError("Error retrieving cities");
     }
-  });
+  }
+  useEffect(() => {
+    getCities();
+  }, []);
 
   //RETURN UI HERE
+  if (loading) {
+    return (
+      <div>
+        Loading <Icon name="spinner" />
+      </div>
+    );
+  }
   return (
     <div>
-      <Grid style={{ height: "100vmin" }}>
+      <Grid>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
             <PageHeader />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row
-          centered="true"
-          style={{
-            height: "80vmin",
-          }}
-          className="home-page"
-        >
+        <Grid.Row centered="true" className="home-page">
           <Grid.Column
             width={12}
             style={{
@@ -52,7 +62,9 @@ export default function HomePage() {
             }}
           >
             <SearchCitiesForm />
-            <CityGallery />
+            <div className="city-gallery">
+              <CityGallery cities={cities} />
+            </div>
           </Grid.Column>
           <Grid.Column
             width={4}

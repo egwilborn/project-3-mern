@@ -45,7 +45,7 @@ export default function AddCityForm() {
 
   //RETURN UI HERE
   return (
-    <Grid textAlign="center" style={{ width: "40vmin" }}>
+    <Grid textAlign="center" style={{ width: "350px" }}>
       <Grid.Column>
         <Header
           as="h2"

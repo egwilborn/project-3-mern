@@ -8,20 +8,14 @@ import { Link } from "react-router-dom";
 
 export default function FormPage() {
   return (
-    <div style={{ position: "relative", height: "100vmin" }}>
-      <Grid>
+    <div>
+      <Grid style={{ height: "100vmin" }}>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
             <PageHeader />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row
-          centered
-          style={{
-            height: "80vmin",
-          }}
-          className="home-page"
-        >
+        <Grid.Row centered="true">
           <Grid.Column
             width={12}
             style={{
@@ -31,24 +25,19 @@ export default function FormPage() {
               alignItems: "center",
             }}
           >
-            <div style={{}}>
+            <div className="add-city-form">
               <AddCityForm />
             </div>
           </Grid.Column>
           <Grid.Column
             width={4}
-            style={{ backgroundColor: "rgb(192 204 210)" }}
+            style={{ backgroundColor: "rgb(192 204 210)", height: "90vmin" }}
           >
             <UserCityGallery />
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Container
-        fluid
-        style={{ position: "absolute", bottom: "0", height: "10vmin" }}
-      >
-        <Footer />
-      </Container>
+      <Footer />
     </div>
   );
 }
