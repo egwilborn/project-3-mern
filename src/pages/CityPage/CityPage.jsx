@@ -4,52 +4,54 @@ import CityGallery from "../../components/CityGallery/CityGallery";
 import UserCityGallery from "../../components/UserCityGallery/UserCityGallery";
 import Footer from "../../components/Footer/Footer";
 
-import "./HomePage.css";
 import * as cityApi from "../../utils/cityApi";
 import userService from "../../utils/userService";
 
 import { Grid, Image, Segment, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function HomePage({ user, handleLogout }) {
+export default function CityPage({ user, handleLogout }) {
+  //define varaibles here
+  const { cityId } = useParams();
   //SET STATE HERE
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState([]); //CHANGE THIS
   const [userCities, setUserCities] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [loadingUserCities, setLoadingUserCities] = useState(true);
 
   //DEFINE FUNCTIONS HERE
-  async function addFollower(cityId) {
+  async function addFollower(id) {
     try {
       //make server call
-      const response = await cityApi.followCity(cityId);
+      const response = await cityApi.followCity(id);
       // console.log(response, "<-- response from server after adding follower");
-      getCities(); //call get cities to re-retrieve cities from server and update state
+      getCity(); //call get cities to re-retrieve cities from server and update state
       getUserCities(); // call get user cities to re-retrieve user cities from server and update state
     } catch (err) {
       console.log(err, "<-- error in addFollowers in homePage");
       setError("error adding follower - check console");
     }
   }
-  async function removeFollower(cityId) {
+  async function removeFollower(id) {
     try {
-      const response = await cityApi.unfollowCity(cityId);
+      const response = await cityApi.unfollowCity(id);
       // console.log(response, "<-- response from server after removing follower");
-      getCities(); //call get cities to re-retrieve cities from server and update state
+      getCity(); //call get cities to re-retrieve cities from server and update state
       getUserCities(); // call get user cities to re-retrieve user cities from server and update state
     } catch (err) {
       console.log(err, "<-- error in addFollowers in homePage");
       setError("error adding follower - check console");
     }
   }
-  async function getCities() {
+  async function getCity() {
+    //CHANGE THIS
     try {
       //make api call to get all the cities from db
-      const response = await cityApi.getAllCities();
-      //console.log(response.cities) //<-- test to see what form your data is coming back in
-      setCities(response.cities); // set state with your data so it can be rendered in ui
+      const response = await cityApi.getCity(cityId);
+      //   console.log(response.city); //<-- test to see what form your data is coming back in
+      setCities(response.city); // set state with your data so it can be rendered in ui
       setLoading(false); //renders homepage ui after the response form the server is received
     } catch (err) {
       console.log(err, "<-- err getting cities in homepage");
@@ -70,9 +72,9 @@ export default function HomePage({ user, handleLogout }) {
   }
 
   useEffect(() => {
-    getCities();
+    getCity();
     getUserCities();
-  }, []);
+  }, [cityId]);
 
   //RETURN UI HERE
   if (loading || loadingUserCities) {
@@ -100,13 +102,13 @@ export default function HomePage({ user, handleLogout }) {
               alignItems: "center",
             }}
           >
-            <SearchCitiesForm />
             <div className="city-gallery">
               <CityGallery
                 cities={cities}
                 addFollower={addFollower}
                 removeFollower={removeFollower}
                 user={user}
+                isCityPage={true}
               />
             </div>
           </Grid.Column>

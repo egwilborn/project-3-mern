@@ -11,7 +11,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
   //return ui here
   return (
     <>
-      <PageHeader />
+      <PageHeader needLogout={false} />
       <SignupForm handleSignupOrLogin={handleSignupOrLogin} />
     </>
   );

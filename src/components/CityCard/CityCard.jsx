@@ -1,7 +1,13 @@
-import React from "react";
-import { Card, Icon, Image, Segment, Checkbox } from "semantic-ui-react";
+import {
+  Card,
+  Icon,
+  Image,
+  Segment,
+  Checkbox,
+  Container,
+} from "semantic-ui-react";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import "./CityCard.css";
 
 export default function CityCard({
@@ -10,6 +16,7 @@ export default function CityCard({
   removeFollower,
   user,
   size,
+  isCityPage,
 }) {
   //when checkbox status is changed to checked, call add follower function
   //when checkbox status is changed to uncheck, call remove follower function
@@ -34,15 +41,28 @@ export default function CityCard({
       <Card.Content>
         <Card.Header>
           <div className="card-header">
-            {city.name} <Checkbox checked={isChecked} onChange={handleCheck} />
+            <Link to={`/${city._id}`}> {city.name} </Link>{" "}
+            <Checkbox checked={isChecked} onChange={handleCheck} />
           </div>
         </Card.Header>
         <Card.Meta>
           <span className="country">{city.country}</span>
         </Card.Meta>
       </Card.Content>
-      <Card.Content>
-        <Image src={city.photoUrl} size={size} />
+      <Card.Content
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          maxWidth: "60vw",
+        }}
+      >
+        <Image
+          src={city.photoUrl}
+          size={size}
+          style={{ marginRight: "20px" }}
+        />
+        {isCityPage ? <Container>{city.description}</Container> : null}
       </Card.Content>
     </Card>
   );

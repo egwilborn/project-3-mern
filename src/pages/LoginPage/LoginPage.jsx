@@ -6,7 +6,7 @@ import PageHeader from "../../components/Header/Header";
 export default function LoginPage({ handleSignupOrLogin }) {
   return (
     <div>
-      <PageHeader />
+      <PageHeader needLogout={false} />
       <LoginForm handleSignupOrLogin={handleSignupOrLogin} />
     </div>
   );

@@ -10,6 +10,7 @@ router.post("/", upload.single("photo"), citiesCtrl.create);
 router.get("/", citiesCtrl.index);
 router.post("/:id/follow", citiesCtrl.follow);
 router.delete("/:id/unfollow", citiesCtrl.unfollow);
+router.get("/:id", citiesCtrl.show);
 /*---------- Protected Routes ----------*/
 
 module.exports = router;

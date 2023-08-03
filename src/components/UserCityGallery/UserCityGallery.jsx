@@ -13,7 +13,7 @@ export default function UserCityGallery({
       <CityCard
         key={city._id}
         city={city}
-        size={"tiny"}
+        size={"small"}
         user={user}
         addFollower={addFollower}
         removeFollower={removeFollower}

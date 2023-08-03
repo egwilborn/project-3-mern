@@ -12,6 +12,7 @@ module.exports = {
   index,
   follow,
   unfollow,
+  show,
 };
 
 //for creating a new city post
@@ -79,6 +80,17 @@ async function unfollow(req, res) {
     res.status(201).json({ data: "user is no longer following city" });
   } catch (err) {
     console.log(err, "<--- error with following city in cities controller");
+    res.status(400).json(err);
+  }
+}
+
+async function show(req, res) {
+  try {
+    const city = await City.findById(req.params.id);
+    console.log(city);
+    res.status(201).json({ city });
+  } catch (err) {
+    console.log(err, "<-- error from cities controller, show function");
     res.status(400).json(err);
   }
 }
