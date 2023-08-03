@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const City = require("../models/city");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
@@ -13,6 +14,7 @@ const BUCKET_NAME = process.env.BUCKET_NAME;
 module.exports = {
   signup,
   login,
+  index,
 };
 
 async function signup(req, res) {
@@ -41,11 +43,11 @@ async function signup(req, res) {
     }
     req.body.photoUrl = data.Location; // aws responds with file data, so we set the location to be
     //the url in the user model
-    const user = new User(req.body);
+    const user = new User(req.body); // make new user in model
     try {
-      await user.save();
-      const token = createJWT(user);
-      res.json({ token });
+      await user.save(); //save new user
+      const token = createJWT(user); //make a token with that user
+      res.json({ token }); //send token to browser
     } catch (err) {
       // Probably a duplicate email
       res.status(400).json(err);
@@ -55,19 +57,37 @@ async function signup(req, res) {
 
 async function login(req, res) {
   try {
+    //find the user with matching email from login request
     const user = await User.findOne({ email: req.body.email });
-
+    // if the user doesn't exist with the login creds, throw error
     if (!user) return res.status(401).json({ err: "bad credentials" });
+    // if the user exists, check the password against the one in the db
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (isMatch) {
+        //if it works, make a token with user info and send to server
         const token = createJWT(user);
         res.json({ token });
       } else {
+        //if password doesn't match, throw error
         return res.status(401).json({ err: "bad credentials" });
       }
     });
   } catch (err) {
     return res.status(401).json(err);
+  }
+}
+
+async function index(req, res) {
+  try {
+    //find all the cities that have req.user._id in their usersFollowing array
+    const userCities = await City.find({ usersFollowing: req.user._id });
+    // console.log(userCities, "<-- userCities from user controller");
+    res.status(201).json({ data: userCities });
+  } catch (err) {
+    console.log(
+      err,
+      "<--err in retrieving user cities, see index fn user ctrl"
+    );
   }
 }
 

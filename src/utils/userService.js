@@ -43,9 +43,27 @@ function login(creds) {
     .then(({ token }) => tokenService.setToken(token));
 }
 
+export function getUserCities() {
+  return fetch(BASE_URL + "cities", {
+    method: "GET",
+    headers: {
+      // for sending http requests when logged in - supplies req.user
+
+      Authorization: "Bearer " + tokenService.getToken(), // < this is how we get the token from localstorage and add it to our api request
+      // so the server knows who the request is coming from when the client is trying to make a POST
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error(
+      "something went wrong with getAllCities request in city api"
+    );
+  });
+}
+
 export default {
   signup,
   getUser,
   logout,
   login,
+  getUserCities,
 };

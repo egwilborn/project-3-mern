@@ -17,6 +17,7 @@ export default function CityGallery({
         addFollower={addFollower}
         key={city._id}
         user={user}
+        size={"medium"}
       />
     );
   });

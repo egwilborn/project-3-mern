@@ -4,18 +4,24 @@ import { useState } from "react";
 
 import "./CityCard.css";
 
-export default function CityCard({ city, addFollower, removeFollower, user }) {
+export default function CityCard({
+  city,
+  addFollower,
+  removeFollower,
+  user,
+  size,
+}) {
   //when checkbox status is changed to checked, call add follower function
   //when checkbox status is changed to uncheck, call remove follower function
 
   //find the index of the user's id
   const userIndex = city.usersFollowing.findIndex(
-    (cityUser) => cityUser._id === user._id
+    (cityUser) => cityUser === user._id
   );
+
   //if the user's index is -1 : the user isn't in the list
   //if the users index is >-1 : the user is in the list
   const isChecked = userIndex > -1 ? true : false;
-
   //if the user has followed the city, then we need to remove the user when the box is changed
   //if the user hasn't followed the city, then we need to add the user when the box is changed
   const handleCheck =
@@ -36,7 +42,7 @@ export default function CityCard({ city, addFollower, removeFollower, user }) {
         </Card.Meta>
       </Card.Content>
       <Card.Content>
-        <Image src={city.photoUrl} size="medium" />
+        <Image src={city.photoUrl} size={size} />
       </Card.Content>
     </Card>
   );
