@@ -16,7 +16,7 @@ export default function CityCard({
   removeFollower,
   user,
   size,
-  isCityPage,
+  isUserCity,
 }) {
   //when checkbox status is changed to checked, call add follower function
   //when checkbox status is changed to uncheck, call remove follower function
@@ -62,7 +62,8 @@ export default function CityCard({
           size={size}
           style={{ marginRight: "20px" }}
         />
-        {isCityPage ? <Container>{city.description}</Container> : null}
+
+        {isUserCity ? null : <Container>{city.description}</Container>}
       </Card.Content>
     </Card>
   );

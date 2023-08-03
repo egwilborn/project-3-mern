@@ -63,7 +63,7 @@ export default function AddCityForm() {
         <Form onSubmit={handleSubmit} size="large" autoComplete="off">
           <Segment stacked style={{ backgroundColor: "rgb(192 204 210)" }}>
             <Form.Input
-              fluid
+              fluid={true}
               placeholder="City Name"
               name="name"
               value={state.name}
@@ -71,7 +71,7 @@ export default function AddCityForm() {
               required
             />
             <Form.Input
-              fluid
+              fluid={true}
               placeholder="Country"
               name="country"
               value={state.country}
@@ -79,7 +79,7 @@ export default function AddCityForm() {
               required
             />
             <Form.TextArea
-              fluid
+              fluid={true}
               rows="5"
               placeholder="Description"
               name="description"
@@ -89,7 +89,7 @@ export default function AddCityForm() {
             />
 
             <Form.Input
-              fluid
+              fluid={true}
               placeholder="Upload Photo"
               type="file"
               name="photo"
@@ -98,7 +98,7 @@ export default function AddCityForm() {
 
             <Button
               style={{ backgroundColor: "rgb(19 52 119)", color: "white" }}
-              fluid
+              fluid={true}
               size="large"
               type="submit"
             >

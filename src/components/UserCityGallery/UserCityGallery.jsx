@@ -17,6 +17,7 @@ export default function UserCityGallery({
         user={user}
         addFollower={addFollower}
         removeFollower={removeFollower}
+        isUserCity={true}
       />
     );
   });

@@ -39,7 +39,7 @@ async function create(req, res) {
     try {
       await city.save();
       // console.log(city, "<-- new document");
-      res.status(201).json({ data: city }); //sends back a response containing the new post information
+      res.status(201).json({ data: city }); //sends back a response containing the new city information
     } catch (err) {
       console.log(
         err,
@@ -86,8 +86,10 @@ async function unfollow(req, res) {
 
 async function show(req, res) {
   try {
-    const city = await City.findById(req.params.id);
-    console.log(city);
+    //when the city is retrieved we need to populate the sites array of ids so that
+    //we can access the sites without need another api call
+    const city = await City.findById(req.params.id).populate("sites").exec();
+    // console.log(city, "checking for populating sites in citiesCtrl");
     res.status(201).json({ city });
   } catch (err) {
     console.log(err, "<-- error from cities controller, show function");

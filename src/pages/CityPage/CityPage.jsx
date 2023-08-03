@@ -2,6 +2,7 @@ import PageHeader from "../../components/Header/Header";
 import SearchCitiesForm from "../../components/SearchCitiesForm/SearchCitiesForm";
 import CityGallery from "../../components/CityGallery/CityGallery";
 import UserCityGallery from "../../components/UserCityGallery/UserCityGallery";
+import SiteGallery from "../../components/SiteGallery/SiteGallery";
 import Footer from "../../components/Footer/Footer";
 
 import * as cityApi from "../../utils/cityApi";
@@ -15,7 +16,7 @@ export default function CityPage({ user, handleLogout }) {
   //define varaibles here
   const { cityId } = useParams();
   //SET STATE HERE
-  const [cities, setCities] = useState([]); //CHANGE THIS
+  const [cities, setCities] = useState([]);
   const [userCities, setUserCities] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
@@ -46,7 +47,6 @@ export default function CityPage({ user, handleLogout }) {
     }
   }
   async function getCity() {
-    //CHANGE THIS
     try {
       //make api call to get all the cities from db
       const response = await cityApi.getCity(cityId);
@@ -110,6 +110,7 @@ export default function CityPage({ user, handleLogout }) {
                 user={user}
                 isCityPage={true}
               />
+              <SiteGallery sites={cities.sites} />
             </div>
           </Grid.Column>
           <Grid.Column
