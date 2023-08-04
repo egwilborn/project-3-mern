@@ -1,0 +1,18 @@
+.review-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5px;
+}
+.review-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 20px 20px 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgrey;
+  padding: 5px;
+  width: 90%;
+}

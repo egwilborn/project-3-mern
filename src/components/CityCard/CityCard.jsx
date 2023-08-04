@@ -41,7 +41,7 @@ export default function CityCard({
       <Card.Content>
         <Card.Header>
           <div className="card-header">
-            <Link to={`/${city._id}`}> {city.name} </Link>{" "}
+            <Link to={`/${city._id}`}> {city.name} </Link>
             <Checkbox checked={isChecked} onChange={handleCheck} />
           </div>
         </Card.Header>

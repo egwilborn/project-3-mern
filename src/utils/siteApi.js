@@ -17,3 +17,15 @@ export function addSite(data, cityId) {
     throw new Error("something went wrong with add site, check siteApi");
   });
 }
+
+export function deleteSite(siteId) {
+  return fetch(`${BASE_URL}/sites/${siteId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("something went wrong with delete site, check siteApi");
+  });
+}

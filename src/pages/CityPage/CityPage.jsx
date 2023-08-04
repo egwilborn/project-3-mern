@@ -4,7 +4,8 @@ import CityGallery from "../../components/CityGallery/CityGallery";
 import UserCityGallery from "../../components/UserCityGallery/UserCityGallery";
 import SiteGallery from "../../components/SiteGallery/SiteGallery";
 import Footer from "../../components/Footer/Footer";
-
+import * as siteApi from "../../utils/siteApi";
+import * as reviewApi from "../../utils/reviewApi";
 import * as cityApi from "../../utils/cityApi";
 import userService from "../../utils/userService";
 
@@ -70,7 +71,37 @@ export default function CityPage({ user, handleLogout }) {
       setError("Error retrieving user's cities check console and try again");
     }
   }
+  async function handleAddSite(formData, cityId) {
+    try {
+      //make api call to create a new site
+      const response = await siteApi.addSite(formData, cityId);
+      //get city again with new site in document
+      getCity();
+    } catch (err) {
+      console.log("error adding Site, check api call");
+      setError("Error adding a site. check console and try again");
+    }
+  }
+  async function handleDeleteSite(siteId) {
+    try {
+      //make api call to delete the site
+      const response = await siteApi.deleteSite(siteId);
+      //get city again with site removed from document
+      getCity();
+    } catch (err) {
+      console.log("error deleting Site, check api call");
+      setError("Error deleting a site. check console and try again");
+    }
+  }
 
+  async function handleAddReview(data, siteId) {
+    try {
+      const response = await reviewApi.addReview(data, siteId);
+      getCity();
+    } catch (err) {
+      console.log(err, "<-- err in adding review, check review api");
+    }
+  }
   useEffect(() => {
     getCity();
     getUserCities();
@@ -110,7 +141,12 @@ export default function CityPage({ user, handleLogout }) {
                 user={user}
                 isCityPage={true}
               />
-              <SiteGallery sites={cities.sites} />
+              <SiteGallery
+                sites={cities.sites}
+                handleAddSite={handleAddSite}
+                handleDeleteSite={handleDeleteSite}
+                handleAddReview={handleAddReview}
+              />
             </div>
           </Grid.Column>
           <Grid.Column

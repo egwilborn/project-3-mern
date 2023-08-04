@@ -1,8 +1,20 @@
 import AddSiteForm from "../AddSiteForm/AddSiteForm";
-import { Card, Icon, Image, Dimmer, Button } from "semantic-ui-react";
+import ReviewGallery from "../ReviewGallery/ReviewGallery";
+import { Card, Icon, Image, Dimmer, Button, Segment } from "semantic-ui-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as siteApi from "../../utils/siteApi";
 
-export default function SiteCard({ isForm, site, size }) {
+export default function SiteCard({
+  isForm,
+  site,
+  size,
+  handleAddSite,
+  handleDeleteSite,
+  handleAddReview,
+}) {
+  //define variables
+  const navigate = useNavigate();
   //SET STATE HERE
   const [dimmer, setDimmer] = useState(false);
 
@@ -14,11 +26,16 @@ export default function SiteCard({ isForm, site, size }) {
     setDimmer(false);
   }
 
+  function handleDelete(e) {
+    e.preventDefault();
+    handleDeleteSite(site._id);
+  }
+
   return (
     <>
       {isForm ? (
         <Card>
-          <AddSiteForm />
+          <AddSiteForm handleAddSite={handleAddSite} />
         </Card>
       ) : (
         <Card>
@@ -34,7 +51,12 @@ export default function SiteCard({ isForm, site, size }) {
             <Card.Header>
               {site.name} <Icon name="clone" link onClick={handleOpen} />
             </Card.Header>
-            <Card.Meta>edit delete</Card.Meta>
+            <Card.Meta>
+              <Link to="" onClick={handleDelete}>
+                delete
+              </Link>
+              <Icon name="trash" size="small" />
+            </Card.Meta>
             <Card.Description>{site.description}</Card.Description>
           </Card.Content>
           <Card.Content extra>
@@ -52,12 +74,17 @@ export default function SiteCard({ isForm, site, size }) {
               />
               <Card.Content>
                 <Card.Header>{site.name}</Card.Header>
-                <Card.Meta>edit delete</Card.Meta>
+                <Card.Meta>
+                  <Link to="" onClick={handleDelete}>
+                    delete
+                  </Link>{" "}
+                  <Icon name="trash" size="small" />
+                </Card.Meta>
                 <Card.Description>{site.description}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Icon name="comments" />
-                {site.reviews.length} Reviews
+                <Segment>Reviews</Segment>
+                <ReviewGallery handleAddReview={handleAddReview} site={site} />
               </Card.Content>
             </Card>
           </Dimmer>

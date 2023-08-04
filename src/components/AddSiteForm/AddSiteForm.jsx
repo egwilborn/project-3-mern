@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import * as siteApi from "../../utils/siteApi";
 
-export default function AddSiteForm() {
+export default function AddSiteForm({ handleAddSite }) {
   //define variables here
   const { cityId } = useParams();
   const navigate = useNavigate();
@@ -34,13 +34,12 @@ export default function AddSiteForm() {
     formData.append("description", state.description);
     //when you make the api call, the addSite function needs the form data
     //AND the CityId
-    siteApi.addSite(formData, cityId);
-    navigate(`/${cityId}`);
+    handleAddSite(formData, cityId);
     setState({
       name: "",
       description: "",
     });
-    setSelectedFile("");
+    setSelectedFile({});
   }
   //RETURN UI HERE
   return (

@@ -10,10 +10,11 @@ const BUCKET_NAME = process.env.BUCKET_NAME;
 
 module.exports = {
   create,
+  delete: deleteSite,
 };
 
 async function create(req, res) {
-  //   console.log(req.body, "<-- req.body", req.file, "<--req.file");
+  // console.log(req.body, "<-- req.body", req.file, "<--req.file", req.params.id);
   //if there is no file then you need to send back an error
   if (!req.file)
     return res.status(400).json({ error: "Please submit a site photo" });
@@ -44,4 +45,24 @@ async function create(req, res) {
       res.status(400).json(err);
     }
   });
+}
+
+async function deleteSite(req, res) {
+  try {
+    //find the site document and delete it from db
+    const site = await Site.findByIdAndDelete(req.params.id);
+    //find the city with the site id
+    const city = await City.findOne({ sites: req.params.id });
+    //delete the object id from the sites array within city doc
+    city.sites.remove(req.params.id);
+    //save city doc
+    await city.save();
+    //respond to client
+    res.status(201).json({
+      data: "site was deleted and its id removed from the city document",
+    });
+  } catch (err) {
+    console.log(err, "<-- error in delete site function in sitesCtrl");
+    res.status(400).json(err);
+  }
 }
