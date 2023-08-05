@@ -17,6 +17,7 @@ export default function CityCard({
   user,
   size,
   isUserCity,
+  deleteCity,
 }) {
   //when checkbox status is changed to checked, call add follower function
   //when checkbox status is changed to uncheck, call remove follower function
@@ -36,6 +37,9 @@ export default function CityCard({
       ? () => removeFollower(city._id)
       : () => addFollower(city._id);
 
+  function handleDeleteCity() {
+    deleteCity(city._id);
+  }
   return (
     <Card>
       <Card.Content>
@@ -45,8 +49,19 @@ export default function CityCard({
             <Checkbox checked={isChecked} onChange={handleCheck} />
           </div>
         </Card.Header>
-        <Card.Meta>
+        <Card.Meta
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <span className="country">{city.country}</span>
+          {isUserCity ? null : (
+            <Link to="" onClick={handleDeleteCity}>
+              <Icon name="trash" size="large" />
+            </Link>
+          )}
         </Card.Meta>
       </Card.Content>
       <Card.Content

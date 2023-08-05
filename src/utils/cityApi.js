@@ -84,3 +84,13 @@ export function getCity(cityId) {
     throw new Error("something went wrong with followCity request in city api");
   });
 }
+
+export function deleteCity(cityId) {
+  return fetch(`${BASE_URL}/${cityId}`, {
+    method: "DELETE",
+    headers: { Authorization: "Bearer " + tokenService.getToken() },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("something went wrong with deleteCity request in city api");
+  });
+}

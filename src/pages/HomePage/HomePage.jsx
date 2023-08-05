@@ -68,7 +68,16 @@ export default function HomePage({ user, handleLogout }) {
       setError("Error retrieving user's cities check console and try again");
     }
   }
-
+  async function deleteCity(cityId) {
+    try {
+      const response = await cityApi.deleteCity(cityId);
+      getCities();
+      getUserCities();
+    } catch (err) {
+      console.log("error deleting city, check api call");
+      setError("Error deleting a city. check console and try again");
+    }
+  }
   useEffect(() => {
     getCities();
     getUserCities();
@@ -87,7 +96,11 @@ export default function HomePage({ user, handleLogout }) {
       <Grid>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
-            <PageHeader handleLogout={handleLogout} needLogout={true} />
+            <PageHeader
+              handleLogout={handleLogout}
+              needLogout={true}
+              user={user}
+            />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered={true} className="home-page">
@@ -107,6 +120,7 @@ export default function HomePage({ user, handleLogout }) {
                 addFollower={addFollower}
                 removeFollower={removeFollower}
                 user={user}
+                deleteCity={deleteCity}
               />
             </div>
           </Grid.Column>

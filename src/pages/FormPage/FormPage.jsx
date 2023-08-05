@@ -6,13 +6,17 @@ import Footer from "../../components/Footer/Footer";
 import { Grid, Image, Segment, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-export default function FormPage({ handleLogout }) {
+export default function FormPage({ handleLogout, user }) {
   return (
     <div>
       <Grid style={{ height: "100vmin" }}>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
-            <PageHeader handleLogout={handleLogout} needLogout={true} />
+            <PageHeader
+              handleLogout={handleLogout}
+              needLogout={true}
+              user={user}
+            />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered={true}>

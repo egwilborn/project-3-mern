@@ -22,7 +22,9 @@ export default function ReviewCard({ isForm, site, handleAddReview, review }) {
               />
             </Item.Header>
 
-            <Item.Description>{review.content}</Item.Description>
+            <Item.Description style={{ color: "black" }}>
+              {review.content}
+            </Item.Description>
           </Item.Content>
         </Item>
       )}

@@ -10,12 +10,13 @@ import * as cityApi from "../../utils/cityApi";
 import userService from "../../utils/userService";
 
 import { Grid, Image, Segment, Icon } from "semantic-ui-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function CityPage({ user, handleLogout }) {
   //define varaibles here
   const { cityId } = useParams();
+  const navigate = useNavigate();
   //SET STATE HERE
   const [cities, setCities] = useState([]);
   const [userCities, setUserCities] = useState([]);
@@ -102,6 +103,16 @@ export default function CityPage({ user, handleLogout }) {
       console.log(err, "<-- err in adding review, check review api");
     }
   }
+
+  async function deleteCity(cityId) {
+    try {
+      const response = await cityApi.deleteCity(cityId);
+      navigate("/");
+    } catch (err) {
+      console.log("error deleting city, check api call");
+      setError("Error deleting a city. check console and try again");
+    }
+  }
   useEffect(() => {
     getCity();
     getUserCities();
@@ -120,7 +131,11 @@ export default function CityPage({ user, handleLogout }) {
       <Grid>
         <Grid.Row stretched style={{ height: "10vmin" }}>
           <Grid.Column>
-            <PageHeader handleLogout={handleLogout} needLogout={true} />
+            <PageHeader
+              handleLogout={handleLogout}
+              needLogout={true}
+              user={user}
+            />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered={true} className="home-page">
@@ -140,6 +155,7 @@ export default function CityPage({ user, handleLogout }) {
                 removeFollower={removeFollower}
                 user={user}
                 isCityPage={true}
+                deleteCity={deleteCity}
               />
               <SiteGallery
                 sites={cities.sites}

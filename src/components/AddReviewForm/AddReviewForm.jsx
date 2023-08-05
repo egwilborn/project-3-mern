@@ -1,6 +1,8 @@
 import { Icon, Item, Rating, Form, Button } from "semantic-ui-react";
 import { useState } from "react";
 
+import "./AddReviewForm.css";
+
 import * as reviewApi from "../../utils/reviewApi";
 import { useNavigate } from "react-router-dom";
 
@@ -42,17 +44,18 @@ export default function AddReviewForm({
   }
   //RETURN UI HERE
   return (
-    <Item fluid>
+    <Item>
       <Form onSubmit={handleSubmit}>
-        <Item.Content className="review-item">
-          <Item.Header floated="left" className="review-header">
+        <Item.Content className="add-review-form">
+          <Item.Header className="add-review-header">
             Leave a Review
-            <Icon name="comment" size="big" />
+            <Icon style={{ color: "grey" }} name="comment" size="big" />
             <Rating
               icon="star"
               maxRating={5}
               onRate={handleChangeOnRate}
               name="rating"
+              floated="left"
             />
             <Button type="submit">Submit Review</Button>
           </Item.Header>
@@ -65,6 +68,7 @@ export default function AddReviewForm({
               value={state.content}
               required
               onChange={handleChange}
+              style={{ width: "100px" }}
             ></Form.TextArea>
           </Item.Description>
         </Item.Content>

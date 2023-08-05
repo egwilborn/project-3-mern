@@ -1,4 +1,5 @@
 const City = require("../models/city");
+const Site = require("../models/site");
 
 const { v4: uuidv4 } = require("uuid");
 // uuid, helps generate our unique ids
@@ -13,6 +14,7 @@ module.exports = {
   follow,
   unfollow,
   show,
+  delete: deleteCity,
 };
 
 //for creating a new city post
@@ -93,6 +95,22 @@ async function show(req, res) {
     res.status(201).json({ city });
   } catch (err) {
     console.log(err, "<-- error from cities controller, show function");
+    res.status(400).json(err);
+  }
+}
+
+async function deleteCity(req, res) {
+  try {
+    //need to first delete the sites that are associated with the city
+    const city = await City.findById(req.params.id);
+    city.sites.forEach(async function (site) {
+      await Site.findByIdAndDelete(site);
+    });
+    //then delete the city
+    await City.findByIdAndDelete(req.params.id);
+    res.status(201).json({ response: "city was deleted successfully" });
+  } catch (err) {
+    console.log(err, "<-- error from cities controller, deleteCity function");
     res.status(400).json(err);
   }
 }

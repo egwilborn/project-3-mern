@@ -32,15 +32,19 @@ export default function AddCityForm() {
   function handleSelectedFile(e) {
     setSelectedFile(e.target.files[0]);
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("photo", selectedFile);
     formData.append("name", state.name);
     formData.append("country", state.country);
     formData.append("description", state.description);
-    cityApi.addCity(formData);
-    navigate("/");
+    try {
+      const response = await cityApi.addCity(formData);
+      navigate("/");
+    } catch (err) {
+      console.log(err, "<-- err in add city api call");
+    }
   }
 
   //RETURN UI HERE

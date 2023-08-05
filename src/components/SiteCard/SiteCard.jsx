@@ -54,8 +54,8 @@ export default function SiteCard({
             <Card.Meta>
               <Link to="" onClick={handleDelete}>
                 delete
+                <Icon name="trash" size="small" />
               </Link>
-              <Icon name="trash" size="small" />
             </Card.Meta>
             <Card.Description>{site.description}</Card.Description>
           </Card.Content>
@@ -83,7 +83,9 @@ export default function SiteCard({
                 <Card.Description>{site.description}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Segment>Reviews</Segment>
+                <Segment vertical style={{ color: "black" }}>
+                  Reviews
+                </Segment>
                 <ReviewGallery handleAddReview={handleAddReview} site={site} />
               </Card.Content>
             </Card>
