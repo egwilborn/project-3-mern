@@ -55,7 +55,7 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     //finds all cities in the model and stores in the the variable "cities"
-    const cities = await City.find({});
+    const cities = await City.find({}).sort({ name: "asc" });
     res.status(201).json({ cities }); //send "cities" back to be rendered for client
   } catch (err) {
     console.log(err, "<--- error with indexing cities in cities controller");

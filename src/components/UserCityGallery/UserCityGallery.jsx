@@ -31,6 +31,7 @@ export default function UserCityGallery({
           fontSize: "20px",
         }}
         as="h2"
+        vertical
       >
         Your Travel Log:
       </Segment>

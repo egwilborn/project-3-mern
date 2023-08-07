@@ -75,9 +75,10 @@ export default function HomePage({ user, handleLogout }) {
       getUserCities();
     } catch (err) {
       console.log("error deleting city, check api call");
-      setError("Error deleting a city. check console and try again");
+      setSearchError("Can't find city. Check console and try again.");
     }
   }
+
   useEffect(() => {
     getCities();
     getUserCities();
@@ -113,7 +114,6 @@ export default function HomePage({ user, handleLogout }) {
               alignItems: "center",
             }}
           >
-            <SearchCitiesForm />
             <div className="city-gallery">
               <CityGallery
                 cities={cities}
