@@ -1,21 +1,25 @@
 import { Input, Button, Segment, Form } from "semantic-ui-react";
 import { useState } from "react";
 import "./SearchCitiesForm.css";
-export default function SearchCitiesForm() {
+export default function SearchCitiesForm({ searchCities }) {
   //SET STATE HERE
-  const [state, setState] = useState("");
+  const [state, setState] = useState({ search: "" });
   //DEFINE FUNCTIONS HERE
   function handleChange(e) {
-    setState(e.target.value);
+    setState({
+      search: e.target.value,
+    });
   }
 
   function handleSearch(e) {
     e.preventDefault();
+    const form = state.search.replace(/ /g, "+");
+    searchCities(form);
   }
   //RETURN UI HERE
   return (
     <div className="search-cities">
-      <p style={{ color: "white" }}>Search for a City</p>
+      <p style={{ color: "white", fontSize: "15px" }}>Search for a City</p>
       <Form onSubmit={handleSearch}>
         <Input
           placeholder="City Name"

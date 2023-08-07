@@ -8,7 +8,7 @@ import "./HomePage.css";
 import * as cityApi from "../../utils/cityApi";
 import userService from "../../utils/userService";
 
-import { Grid, Image, Segment, Icon } from "semantic-ui-react";
+import { Grid, Image, Segment, Icon, Message } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -19,6 +19,7 @@ export default function HomePage({ user, handleLogout }) {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [loadingUserCities, setLoadingUserCities] = useState(true);
+  const [searchError, setSearchError] = useState("");
 
   //DEFINE FUNCTIONS HERE
   async function addFollower(cityId) {
@@ -75,10 +76,28 @@ export default function HomePage({ user, handleLogout }) {
       getUserCities();
     } catch (err) {
       console.log("error deleting city, check api call");
+      setError("Can't find city. Check console and try again.");
+    }
+  }
+  async function searchCities(data) {
+    try {
+      setLoading(true);
+      setSearchError("");
+      const response = await cityApi.search(data);
+      if (response.city.length === 0) {
+        getCities();
+        getUserCities();
+        setLoading(false);
+        setSearchError("Couldn't find matching city. Please try again!");
+      } else if (response.city.length > 0) {
+        setCities(response.city);
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log(err, "error searching cities, check api call");
       setSearchError("Can't find city. Check console and try again.");
     }
   }
-
   useEffect(() => {
     getCities();
     getUserCities();
@@ -114,6 +133,8 @@ export default function HomePage({ user, handleLogout }) {
               alignItems: "center",
             }}
           >
+            <SearchCitiesForm searchCities={searchCities} />
+            <p style={{ color: "red" }}>{searchError}</p>
             <div className="city-gallery">
               <CityGallery
                 cities={cities}

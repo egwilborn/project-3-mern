@@ -21,11 +21,11 @@ export default function Footer({ isLoggedOut }) {
             alignContent: "center",
           }}
         >
-          <Link to="/" style={{ color: "white" }}>
+          <Link to="/" style={{ color: "white", fontSize: "20px" }}>
             Travelog
           </Link>
           <br />
-          <Link to="/form" style={{ color: "white" }}>
+          <Link to="/form" style={{ color: "white", fontSize: "20px" }}>
             Add a City
           </Link>
         </div>

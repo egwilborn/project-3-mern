@@ -26,20 +26,21 @@ export default function CityGallery({
         />
       );
       return <Card.Group itemsPerRow={1}>{cityCards}</Card.Group>;
+    } else {
+      cityCards = cities.map(function (city) {
+        return (
+          <CityCard
+            city={city}
+            removeFollower={removeFollower}
+            addFollower={addFollower}
+            key={city._id}
+            user={user}
+            size={"medium"}
+            deleteCity={deleteCity}
+          />
+        );
+      });
+      return <Card.Group itemsPerRow={1}>{cityCards}</Card.Group>;
     }
   }
-  cityCards = cities.map(function (city) {
-    return (
-      <CityCard
-        city={city}
-        removeFollower={removeFollower}
-        addFollower={addFollower}
-        key={city._id}
-        user={user}
-        size={"medium"}
-        deleteCity={deleteCity}
-      />
-    );
-  });
-  return <Card.Group itemsPerRow={1}>{cityCards}</Card.Group>;
 }

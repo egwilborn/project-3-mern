@@ -15,6 +15,7 @@ module.exports = {
   unfollow,
   show,
   delete: deleteCity,
+  search,
 };
 
 //for creating a new city post
@@ -111,6 +112,23 @@ async function deleteCity(req, res) {
     res.status(201).json({ response: "city was deleted successfully" });
   } catch (err) {
     console.log(err, "<-- error from cities controller, deleteCity function");
+    res.status(400).json(err);
+  }
+}
+
+async function search(req, res) {
+  try {
+    // format the query to match the form names
+    const query = req.query.q.split(" ");
+    const newQuery = query.map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    const searchTerm = newQuery.join(" ");
+    const city = await City.find({ name: searchTerm });
+
+    res.status(201).json({ city });
+  } catch (err) {
+    console.log(err, "<-- error from cities controller, search function");
     res.status(400).json(err);
   }
 }

@@ -23,7 +23,7 @@ export default function CityCard({
   //when checkbox status is changed to uncheck, call remove follower function
 
   //find the index of the user's id
-  const userIndex = city.usersFollowing.findIndex(
+  const userIndex = city.usersFollowing?.findIndex(
     (cityUser) => cityUser === user._id
   );
 

@@ -94,3 +94,16 @@ export function deleteCity(cityId) {
     throw new Error("something went wrong with deleteCity request in city api");
   });
 }
+
+export function search(query) {
+  return fetch(`${BASE_URL}/search?q=${query}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("something went wrong search cities, check cityApi");
+  });
+}
