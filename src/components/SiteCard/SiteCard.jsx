@@ -12,6 +12,8 @@ export default function SiteCard({
   handleAddSite,
   handleDeleteSite,
   handleAddReview,
+  deleteReview,
+  user,
 }) {
   //define variables
   const navigate = useNavigate();
@@ -48,7 +50,7 @@ export default function SiteCard({
           />
 
           <Card.Content>
-            <Card.Header>
+            <Card.Header style={{ fontSize: "20px" }}>
               {site.name} <Icon name="clone" link onClick={handleOpen} />
             </Card.Header>
             <Card.Meta>
@@ -57,14 +59,23 @@ export default function SiteCard({
                 <Icon name="trash" size="small" />
               </Link>
             </Card.Meta>
-            <Card.Description>{site.description}</Card.Description>
+            <Card.Description style={{ fontSize: "15px" }}>
+              {site.description}
+            </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <Icon name="comments" />
             {site.reviews.length} Reviews
           </Card.Content>
           <Dimmer active={dimmer} onClickOutside={handleClose} page>
-            <Card style={{ width: "40vw" }}>
+            <Card
+              style={{
+                height: "100vh",
+                width: "40vw",
+                overflowY: "scroll",
+                paddingBottom: "50px",
+              }}
+            >
               <Image
                 src={site.photoUrl}
                 size={size}
@@ -73,20 +84,29 @@ export default function SiteCard({
                 className="site-img"
               />
               <Card.Content>
-                <Card.Header>{site.name}</Card.Header>
+                <Card.Header style={{ fontSize: "20px" }}>
+                  {site.name}
+                </Card.Header>
                 <Card.Meta>
                   <Link to="" onClick={handleDelete}>
                     delete
-                  </Link>{" "}
-                  <Icon name="trash" size="small" />
+                    <Icon name="trash" size="small" />
+                  </Link>
                 </Card.Meta>
-                <Card.Description>{site.description}</Card.Description>
+                <Card.Description style={{ fontSize: "15px" }}>
+                  {site.description}
+                </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Segment vertical style={{ color: "black" }}>
+                <Segment vertical style={{ color: "black", fontSize: "20px" }}>
                   Reviews
                 </Segment>
-                <ReviewGallery handleAddReview={handleAddReview} site={site} />
+                <ReviewGallery
+                  handleAddReview={handleAddReview}
+                  deleteReview={deleteReview}
+                  site={site}
+                  user={user}
+                />
               </Card.Content>
             </Card>
           </Dimmer>

@@ -3,10 +3,11 @@ import SiteCard from "../SiteCard/SiteCard";
 
 export default function SiteGallery({
   sites,
-  city,
   handleAddSite,
   handleDeleteSite,
   handleAddReview,
+  deleteReview,
+  user,
 }) {
   const siteCards = sites.map(function (site) {
     return (
@@ -17,6 +18,8 @@ export default function SiteGallery({
         size={"small"}
         handleDeleteSite={handleDeleteSite}
         handleAddReview={handleAddReview}
+        deleteReview={deleteReview}
+        user={user}
       />
     );
   });

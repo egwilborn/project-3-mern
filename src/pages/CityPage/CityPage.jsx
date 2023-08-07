@@ -97,10 +97,22 @@ export default function CityPage({ user, handleLogout }) {
 
   async function handleAddReview(data, siteId) {
     try {
+      //make api call
       const response = await reviewApi.addReview(data, siteId);
+      //refresh cities state
       getCity();
     } catch (err) {
       console.log(err, "<-- err in adding review, check review api");
+      setError("Error adding a review. Check console and try again");
+    }
+  }
+  async function deleteReview(reviewId) {
+    try {
+      const response = await reviewApi.deleteReview(reviewId);
+      getCity();
+    } catch (err) {
+      console.log(err, "<-- err in deleting review, check review api");
+      setError("Error deleting a review. Check console and try again");
     }
   }
 
@@ -162,6 +174,8 @@ export default function CityPage({ user, handleLogout }) {
                 handleAddSite={handleAddSite}
                 handleDeleteSite={handleDeleteSite}
                 handleAddReview={handleAddReview}
+                deleteReview={deleteReview}
+                user={user}
               />
             </div>
           </Grid.Column>

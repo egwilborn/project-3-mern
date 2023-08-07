@@ -45,8 +45,8 @@ export default function AddSiteForm({ handleAddSite }) {
   return (
     <>
       <Card.Content>
-        <Card.Header>Add a Site</Card.Header>
-        <Card.Meta>
+        <Card.Header style={{ fontSize: "20px" }}>Add a Site</Card.Header>
+        <Card.Meta style={{ fontSize: "15px" }}>
           <span className="date">
             Submit this form to add a site you've visited in this city
           </span>

@@ -78,7 +78,9 @@ export default function CityCard({
           style={{ marginRight: "20px" }}
         />
 
-        {isUserCity ? null : <Container>{city.description}</Container>}
+        {isUserCity ? null : (
+          <Container style={{ fontSize: "15px" }}>{city.description}</Container>
+        )}
       </Card.Content>
     </Card>
   );

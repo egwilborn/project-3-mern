@@ -23,7 +23,17 @@ export default function UserCityGallery({
   });
   return (
     <>
-      <Segment as="h2">{user.username}'s Cities</Segment>
+      <Segment
+        style={{
+          border: "0px",
+          backgroundColor: "rgb(192 204 210)",
+          textAlign: "center",
+          fontSize: "20px",
+        }}
+        as="h2"
+      >
+        Your Travel Log:
+      </Segment>
       <Card.Group itemsPerRow={1}>{cityCards}</Card.Group>
     </>
   );

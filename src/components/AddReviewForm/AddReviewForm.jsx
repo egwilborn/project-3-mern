@@ -44,22 +44,24 @@ export default function AddReviewForm({
   }
   //RETURN UI HERE
   return (
-    <Item>
+    <Item className="review-form-item">
       <Form onSubmit={handleSubmit}>
         <Item.Content className="add-review-form">
           <Item.Header className="add-review-header">
-            Leave a Review
-            <Icon style={{ color: "grey" }} name="comment" size="big" />
+            <p>Leave a Review</p>
             <Rating
               icon="star"
               maxRating={5}
               onRate={handleChangeOnRate}
               name="rating"
               floated="left"
+              style={{ marginBottom: "10px" }}
             />
-            <Button type="submit">Submit Review</Button>
+            <Button className="review-submit-button" size="tiny" type="submit">
+              Submit Review
+            </Button>
           </Item.Header>
-          <Item.Description>
+          <Item.Description className="review-form-text-area">
             <Form.TextArea
               fluid={true}
               rows={4}
@@ -68,7 +70,6 @@ export default function AddReviewForm({
               value={state.content}
               required
               onChange={handleChange}
-              style={{ width: "100px" }}
             ></Form.TextArea>
           </Item.Description>
         </Item.Content>

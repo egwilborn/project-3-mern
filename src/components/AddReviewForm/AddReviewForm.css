@@ -1,12 +1,21 @@
 .add-review-form {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 10px;
 }
 .add-review-header {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: space-between;
+}
+.review-form-item {
+  margin: 20px 20px 20px 20px;
+  width: 100%;
+}
+
+.review-form-text-area {
+  margin: 0px 0px 0px 10px;
+  width: 90%;
 }
