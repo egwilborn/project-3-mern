@@ -28,6 +28,7 @@ export default function ReviewCard({
             justifyContent: "center",
             alignItems: "center",
           }}
+          className="review-card"
         >
           <Item.Content className="review-item">
             <Item.Header floated="left" className="review-header">

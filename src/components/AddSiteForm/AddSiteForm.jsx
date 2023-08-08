@@ -62,7 +62,7 @@ export default function AddSiteForm({ handleAddSite }) {
           />
           <Form.TextArea
             fluid={true}
-            rows={4}
+            rows={6}
             placeholder="Site Description"
             name="description"
             value={state.description}

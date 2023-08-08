@@ -10,8 +10,6 @@ export default function AddReviewForm({
   site,
   handleAddReview = { handleAddReview },
 }) {
-  //define variables
-  const navigate = useNavigate();
   //SET STATE HERE
   const [state, setState] = useState({
     content: "",

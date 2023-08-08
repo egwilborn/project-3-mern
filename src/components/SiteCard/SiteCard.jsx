@@ -15,8 +15,6 @@ export default function SiteCard({
   deleteReview,
   user,
 }) {
-  //define variables
-  const navigate = useNavigate();
   //SET STATE HERE
   const [dimmer, setDimmer] = useState(false);
 
@@ -51,7 +49,9 @@ export default function SiteCard({
 
           <Card.Content>
             <Card.Header style={{ fontSize: "20px" }}>
-              {site.name} <Icon name="clone" link onClick={handleOpen} />
+              <Link style={{ color: "black" }} to="" onClick={handleOpen}>
+                {site.name} <Icon name="clone" />
+              </Link>
             </Card.Header>
             <Card.Meta>
               <Link to="" onClick={handleDelete}>
