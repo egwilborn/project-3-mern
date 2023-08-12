@@ -23,6 +23,8 @@ and the sites you can visit in each city!
 •Mongodb
 •JavaScript
 •HTML/CSS
+•AWS
+•Semantic UI React
 
 # Getting Started
 

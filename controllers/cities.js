@@ -104,9 +104,8 @@ async function deleteCity(req, res) {
   try {
     //need to first delete the sites that are associated with the city
     const city = await City.findById(req.params.id);
-    city.sites.forEach(async function (site) {
-      await Site.findByIdAndDelete(site);
-    });
+    const ids = city.sites;
+    await Site.deleteMany({ _id: { $in: ids } });
     //then delete the city
     await City.findByIdAndDelete(req.params.id);
     res.status(201).json({ response: "city was deleted successfully" });
