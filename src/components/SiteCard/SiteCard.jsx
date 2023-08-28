@@ -70,7 +70,7 @@ export default function SiteCard({
           <Dimmer active={dimmer} onClickOutside={handleClose} page>
             <Card
               style={{
-                height: "100vh",
+                height: "auto",
                 width: "40vw",
                 overflowY: "scroll",
                 paddingBottom: "50px",
