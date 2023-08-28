@@ -28,6 +28,10 @@ and the sites you can visit in each city!
 
 # Getting Started
 
+You can find the deployed app here!
+https://wilborn-travelog-app.onrender.com/login
+Make an account and login to start planning your next dream trip.
+
 # Next Steps
 
 - Make a mobile friendly version of the site
