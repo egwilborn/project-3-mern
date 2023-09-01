@@ -51,7 +51,10 @@ export default function LoginForm({ handleSignupOrLogin }) {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "rgb(94 149 162)" }} textAlign="center">
-          <Image src="https://imgur.com/RNaIGvo.png" className="signup-logo" />
+          <Image
+            src="https://i.imgur.com/FkZjI97.png"
+            className="signup-logo"
+          />
           Login to Travelog
         </Header>
         <Form size="large" autoComplete="off" onSubmit={handleSubmit}>

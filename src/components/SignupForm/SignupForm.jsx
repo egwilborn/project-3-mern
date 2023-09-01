@@ -66,7 +66,10 @@ export default function SignupForm({ handleSignupOrLogin }) {
           style={{ color: "rgb(94 149 162)", height: "10vh" }}
           textAlign="center"
         >
-          <Image src="https://imgur.com/RNaIGvo.png" className="signup-logo" />
+          <Image
+            src="https://i.imgur.com/FkZjI97.png"
+            className="signup-logo"
+          />
           Sign Up to Use Travelog
         </Header>
         <Form size="large" autoComplete="off" onSubmit={handleSubmit}>
