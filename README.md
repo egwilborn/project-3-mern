@@ -6,14 +6,15 @@ Travelog is an app to make your travel wishlist and help you plan your trip. You
 
 Sign up to use Travelog
 <img src="https://i.imgur.com/3urycO6.png">
+
 View the list of cities on the home page
-<img src="https://i.imgur.com/k91d5OG.png">
+<img src="https://imgur.com/3xHCqOt">
 
 Check out each site page ...
-<img src="https://i.imgur.com/lexhk17.png">
+<img src="https://i.imgur.com/kBmsAwy.png">
 
 and the sites you can visit in each city!
-<img src="https://i.imgur.com/Pcoghxb.png">
+<img src="https://i.imgur.com/eddmsKr.png">
 
 ## Technologies Used
 
