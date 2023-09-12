@@ -8,7 +8,7 @@ Sign up to use Travelog
 <img src="https://i.imgur.com/3urycO6.png">
 
 View the list of cities on the home page
-<img src="https://imgur.com/3xHCqOt">
+<img src="https://i.imgur.com/3xHCqOt.png">
 
 Check out each site page ...
 <img src="https://i.imgur.com/kBmsAwy.png">
