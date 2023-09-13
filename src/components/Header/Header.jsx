@@ -15,7 +15,7 @@ export default function PageHeader({ handleLogout, needLogout, user }) {
       >
         <Image
           size="small"
-          src="hhttps://i.imgur.com/pw2xbhq.png"
+          src="https://i.imgur.com/vVnQNNn.png"
           alt="airplane icon"
         ></Image>
         <Link
