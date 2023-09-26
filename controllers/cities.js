@@ -80,7 +80,7 @@ async function unfollow(req, res) {
     const followedCity = await City.findById(req.params.id);
     followedCity.usersFollowing.remove(req.user._id);
     await followedCity.save();
-    res.status(201).json({ data: "user is no longer following city" });
+    res.status(204).json({ data: "user is no longer following city" });
   } catch (err) {
     console.log(err, "<--- error with following city in cities controller");
     res.status(400).json(err);
@@ -93,7 +93,7 @@ async function show(req, res) {
     //we can access the sites without need another api call
     const city = await City.findById(req.params.id).populate("sites").exec();
     // console.log(city, "checking for populating sites in citiesCtrl");
-    res.status(201).json({ city });
+    res.status(200).json({ city });
   } catch (err) {
     console.log(err, "<-- error from cities controller, show function");
     res.status(400).json(err);
@@ -108,7 +108,7 @@ async function deleteCity(req, res) {
     await Site.deleteMany({ _id: { $in: ids } });
     //then delete the city
     await City.findByIdAndDelete(req.params.id);
-    res.status(201).json({ response: "city was deleted successfully" });
+    res.status(204).json({ response: "city was deleted successfully" });
   } catch (err) {
     console.log(err, "<-- error from cities controller, deleteCity function");
     res.status(400).json(err);
@@ -125,7 +125,7 @@ async function search(req, res) {
     const searchTerm = newQuery.join(" ");
     const city = await City.find({ name: searchTerm });
 
-    res.status(201).json({ city });
+    res.status(200).json({ city });
   } catch (err) {
     console.log(err, "<-- error from cities controller, search function");
     res.status(400).json(err);

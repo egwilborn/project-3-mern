@@ -58,7 +58,7 @@ async function deleteSite(req, res) {
     //save city doc
     await city.save();
     //respond to client
-    res.status(201).json({
+    res.status(200).json({
       data: "site was deleted and its id removed from the city document",
     });
   } catch (err) {

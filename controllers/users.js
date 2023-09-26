@@ -82,7 +82,7 @@ async function index(req, res) {
     //find all the cities that have req.user._id in their usersFollowing array
     const userCities = await City.find({ usersFollowing: req.user._id });
     // console.log(userCities, "<-- userCities from user controller");
-    res.status(201).json({ data: userCities });
+    res.status(200).json({ data: userCities });
   } catch (err) {
     console.log(
       err,

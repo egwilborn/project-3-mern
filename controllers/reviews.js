@@ -37,7 +37,7 @@ async function deleteReview(req, res) {
     //save the site document
     site.save();
     //respond to  browser
-    res.status(201).json({ review: "review was deleted from site document" });
+    res.status(204).json({ review: "review was deleted from site document" });
   } catch (err) {
     console.log(err, "<-- err with deleting review in reviewsCtrl");
     res.status(400).json({ error: "error deleting review, check terminal" });

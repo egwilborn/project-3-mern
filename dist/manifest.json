@@ -15,13 +15,13 @@
     "file": "assets/brand-icons.d023c55f.eot",
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.eot"
   },
-  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff2": {
-    "file": "assets/outline-icons.4d288344.woff2",
-    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff2"
-  },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.woff2": {
     "file": "assets/icons.434466b5.woff2",
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.woff2"
+  },
+  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff2": {
+    "file": "assets/outline-icons.4d288344.woff2",
+    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff2"
   },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.woff2": {
     "file": "assets/brand-icons.e7d4d534.woff2",
