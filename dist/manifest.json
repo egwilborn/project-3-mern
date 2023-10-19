@@ -27,13 +27,13 @@
     "file": "assets/brand-icons.e7d4d534.woff2",
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.woff2"
   },
-  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff": {
-    "file": "assets/outline-icons.4bc359c2.woff",
-    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff"
-  },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.woff": {
     "file": "assets/icons.95b6a484.woff",
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.woff"
+  },
+  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff": {
+    "file": "assets/outline-icons.4bc359c2.woff",
+    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.woff"
   },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.woff": {
     "file": "assets/brand-icons.9fafd6c3.woff",
