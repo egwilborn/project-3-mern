@@ -3,13 +3,13 @@
     "file": "assets/flags.94d5c7f1.png",
     "src": "node_modules/semantic-ui-css/themes/default/assets/images/flags.png"
   },
-  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.eot": {
-    "file": "assets/outline-icons.4537fa06.eot",
-    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.eot"
-  },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.eot": {
     "file": "assets/icons.8b4e1b84.eot",
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/icons.eot"
+  },
+  "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.eot": {
+    "file": "assets/outline-icons.4537fa06.eot",
+    "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/outline-icons.eot"
   },
   "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.eot": {
     "file": "assets/brand-icons.d023c55f.eot",
@@ -64,7 +64,7 @@
     "src": "node_modules/semantic-ui-css/themes/default/assets/fonts/brand-icons.svg"
   },
   "src/main.jsx": {
-    "file": "assets/main.a0aef7b5.js",
+    "file": "assets/main.0971db57.js",
     "src": "src/main.jsx",
     "isEntry": true,
     "css": [

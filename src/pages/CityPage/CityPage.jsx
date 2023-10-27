@@ -79,7 +79,7 @@ export default function CityPage({ user, handleLogout }) {
       //get city again with new site in document
       getCity();
     } catch (err) {
-      console.log("error adding Site, check api call");
+      console.log(err, "error adding Site, check api call");
       setError("Error adding a site. check console and try again");
     }
   }
