@@ -74,6 +74,7 @@ export default function SiteCard({
                 width: "40vw",
                 overflowY: "scroll",
                 paddingBottom: "50px",
+                paddingTop: "30px",
               }}
             >
               <Image
